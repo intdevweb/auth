@@ -49,9 +49,18 @@
 		//si on n'a pas d'erreur 
 		//en d'autre mots, si notre variable est encore vierge
 		if (empty($error)){
-
 			//insert dans la table users
-			
+			$sql = "INSERT INTO users (id, email, username, password, date_created, date_modified) 
+					VALUES (NULL, :email, :username, :password, NOW(), NULL)";
+
+			$sth = $dbh->prepare($sql);
+
+			//on donne une valeur aux paramètres de la requête
+			$sth->bindValue(":email", $email);
+			$sth->bindValue(":username", $username);
+			$sth->bindValue(":password", $password);
+
+			$sth->execute();
 		}
 
 	}
