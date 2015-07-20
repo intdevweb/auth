@@ -1,5 +1,8 @@
 <?php
 
+	//pour inclure nos librairies composer
+	include("vendor/autoload.php");
+
 	include("functions.php");
 	include("db.php");
 
