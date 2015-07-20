@@ -31,6 +31,18 @@
 		elseif(strlen($email) > 100){
 			$error = "Votre email est long, trop long.";
 		}
+		else {
+			//email déjà présent dans la base ?
+			$sql = "SELECT email FROM users WHERE email = :email";
+			$sth = $dbh->prepare($sql);
+			//l'array remplace le bindValue()
+			$sth->execute(array(":email" => $email));
+			$foundEmail = $sth->fetchColumn();
+
+			if ($foundEmail){
+				$error = "Cet email est déjà enregistré ici !";
+			}
+		}
 
 		//username vide ?
 		if(empty($username)){
@@ -40,10 +52,25 @@
 		elseif(strlen($username) > 100){
 			$error = "Votre pseudo est long, trop long.";
 		}
+		else {
+			//username déjà présent dans la base ?
+			$sql = "SELECT username FROM users WHERE username = :username";
+			$sth = $dbh->prepare($sql);
+			//l'array remplace le bindValue()
+			$sth->execute(array(":username" => $username));
+			$foundUsername = $sth->fetchColumn();
+
+			if ($foundUsername){
+				$error = "Ce pseudo est déjà enregistré ici !";
+			}
+		}
 
 		//mots de passe correspondent ?
 		if ($password != $password_confirm){
 			$error = "Vos mots de passe ne correspondent pas !";
+		}
+		elseif(strlen($password) <= 6){
+			$error = "Veuillez saisir un mot de passe d'au moins 7 caractères !";
 		}
 
 		//si on n'a pas d'erreur 
@@ -59,6 +86,10 @@
 			$sth->bindValue(":email", $email);
 			$sth->bindValue(":username", $username);
 
+			/*
+			||||||| Attention : PHP 5.5 ou plus !!! |||||||||
+			||||  Sinon, depuis 5.3.7 : https://github.com/ircmaxell/password_compat
+			*/
 			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 			$sth->bindValue(":password", $hashedPassword);
 
