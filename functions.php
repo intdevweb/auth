@@ -18,3 +18,17 @@
 
 		return $frenchDate;
 	}
+
+	//si l'utilisateur n'est pas connecté, on le redirige vers login.php
+	function lock()
+	{
+		//si on a oublié d'appeler session_start()
+		if (!isset($_SESSION)){
+			session_start();
+		}
+
+		if (empty($_SESSION['user'])){
+			header("Location: login.php");
+			die();
+		}
+	}
