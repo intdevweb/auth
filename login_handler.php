@@ -24,7 +24,11 @@
 	if ($foundUser){
 		//vérifie le mot de passe
 		pr($foundUser);
-
+		
+		/*
+		||||||| Attention : PHP 5.5 ou plus !!! |||||||||
+		||||  Sinon, depuis 5.3.7 : https://github.com/ircmaxell/password_compat
+		*/
 		$isValidPassword = password_verify($password, $foundUser['password']);
 
 		if ($isValidPassword){
