@@ -1,5 +1,7 @@
 <?php
 
+	session_start();
+
 	include("config.php");
 	//pour inclure nos librairies composer
 	include("vendor/autoload.php");
@@ -7,7 +9,6 @@
 	include("db.php");
 
 	//tester la soumission du formulaire avec un print_r()
-	pr($_POST);
 	$error = "";
 
 	//si le form est soumis...
@@ -124,6 +125,24 @@
 			$sth->bindValue(":password", $hashedPassword);
 
 			$sth->execute();
+
+			//connecter l'utilisateur programmatiquement
+			//on va rechercher toutes les infos qu'on vient s'insérer (sans le mdp)
+			//afin qu'elles soient structurées comme sur la page de login
+			$sql = "SELECT id, email, username, date_created, date_modified 
+					FROM users 
+					WHERE id = :id";
+
+			$sth = $dbh->prepare($sql);
+			$sth->bindValue(":id", $dbh->lastInsertId());
+			$sth->execute();
+			$user = $sth->fetch();
+
+			//on met l'array dans la session pour connecter le user
+			$_SESSION['user'] = $user;
+			//puis on redirige vers la page protégée
+			header("Location: profile.php");
+			die();
 		}
 
 	}
