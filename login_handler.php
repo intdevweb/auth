@@ -1,6 +1,7 @@
 <?php
 	
 	session_start();
+	include("config.php");
 	include("vendor/autoload.php");
 	include("functions.php");
 	include("db.php");
@@ -24,7 +25,7 @@
 	if ($foundUser){
 		//vérifie le mot de passe
 		pr($foundUser);
-		
+
 		/*
 		||||||| Attention : PHP 5.5 ou plus !!! |||||||||
 		||||  Sinon, depuis 5.3.7 : https://github.com/ircmaxell/password_compat
