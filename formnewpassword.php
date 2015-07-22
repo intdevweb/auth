@@ -4,18 +4,31 @@ include ("vendor/autoload.php");
 
 include ("config.php");
 include ("functions.php");
+
+$token = trim(strip_tags($_GET['token']));
+
+$sql = "SELECT * FROM users WHERE token = :token";
+$sth= $dbh->prepare($sql);
+$sth->execute(array(":token" =>$token));
+$user = $sth->fetch();
+if (!$user){
 if(!empty($_POST)) 
 { 
 	$password = trim(strip_tags($_POST['password']));
 	$newpassword = trim(strip_tags($_POST['newpassword']));
 	
-	$sql = "UPDATE users SET password=':newpassword' WHERE token = :token";
+	$sql = "UPDATE users SET password=:newpassword WHERE token = :token";
 	$sth= $dbh->prepare($sql);
+	$sth->bindValue(':token', $token);
+	
+	$sth->bindValue(':newpassword', $newpassword);
+
 	$sth->execute();
 
 
+
 	if($newpassword === $password){
-	echo "  nouveau password  bien enregistré dans la base";
+		echo "  nouveau password  bien enregistré dans la base";
 
 
 
@@ -24,6 +37,7 @@ if(!empty($_POST))
 
 	}
 
+}
 }
 	//////////////////////ajouot de bibliotheque et de composer pour les telecharger
 	//////////////////////se connecter sous dos se mettre dans le repertoire voulu , ici auth et 
@@ -39,7 +53,7 @@ if(!empty($_POST))
 </head>
 <body>
 	
-	<form method="POST" action="formnewpassword.php">
+	<form method="POST" >
 		<input type="text" name="password" placeholder="Votre password ?" />
 		<input type="text" name="newpassword" placeholder=" ressaisissez Votre password" />
 		<input type="submit" value="OK" />

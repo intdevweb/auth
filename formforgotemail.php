@@ -18,6 +18,11 @@ if(!empty($_POST))
 			$factory = new RandomLib\Factory;
 $generator = $factory->getGenerator(new SecurityLib\Strength(SecurityLib\Strength::MEDIUM));
 $token = $generator->generateString(80, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+$sql = "UPDATE users SET token='$token' WHERE email = :email ";
+	$sth= $dbh->prepare($sql);
+	$sth->bindValue(':email', $email);
+	$sth->execute();
+
 	include ("send_test.php");
 			
 		}else{
