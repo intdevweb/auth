@@ -32,10 +32,10 @@
 	$mail->SMTPSecure = 'tls';
 	$mail->SMTPAuth = true;
 	$mail->Username = SMTPUSER;
-	$mail->Password = SMTPHOST;
+	$mail->Password = SMTPPASS;
 
 	//qui envoie, et qui reçoit
-	$mail->setFrom('wouane@gmail.com', 'Florian Wouane');
+	$mail->setFrom('accounts@auth.com', 'Test');
 	$mail->addAddress('guillaumewf3@gmail.com', 'Guillaume Sylvestre');
 
 	//mail au format HTML
