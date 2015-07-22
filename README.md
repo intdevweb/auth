@@ -1,29 +1,22 @@
 #Système d'authentification
 
-###suite du système d'authentification
-	séparation de la config dans un fichier non versionné
-	ajout d'un readme.md
-	amélioration de l'inscription
-		username != email
-		mots réservés pour le username
-		expressions rationnelles
-			uniquement des alphanumériques pour le username
-			au moins une lettre, un chiffre et un caractère spécial
-	suite du login
-		redirections avec messages d'informations
-	page protégée, accessible que pour les utilisateurs connectés
-	navigation
-		salutation de l'utilisateur connecté
-		logout
-	ajout de rôle
-		page protégée pour admin seulement
+###Ensemble
+* Suite du système de mot de passe oublié
+* Système de remember me
 
-###envoi d'email avec PHPMailer
+###Par vous-même
+####Navigation cohérente sur toutes les pages
 
-###suite encore du système d'auth
-	mot de passe oublié
-		token
-	remember me
-		cookies
-###si on a le temps : 
-	vérification de l'email à l'inscription
+Lorsque l'utilisateur est connecté, afficher les liens suivants : 
+- Déconnexion
+- Mon profil
+
+Lorsque non connecté : 
+- Connexion
+- Inscription
+
+Également, lorsque l'utilisateur est connecté : 
+- Empêcher l'accès aux pages de connexion et d'inscription
+
+####Vérification de l'email à l'inscription
+Lors d'une inscription, envoyer un email à l'utilisateur afin qu'il confirme son adresse. Tant qu'il n'a pas cliqué sur le lien présent dans le message, un bandeau rouge au haut du site l'invite à le faire.
