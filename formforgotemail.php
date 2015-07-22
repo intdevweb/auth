@@ -15,7 +15,9 @@ if(!empty($_POST))
 		$foundEmail = $sth->fetchColumn();
 		if($foundEmail){
 			$error= "  cet email est bien enregistré ici";
-
+			$factory = new RandomLib\Factory;
+$generator = $factory->getGenerator(new SecurityLib\Strength(SecurityLib\Strength::MEDIUM));
+$token = $generator->generateString(80, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 	include ("send_test.php");
 			
 		}else{
