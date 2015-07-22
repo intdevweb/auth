@@ -35,9 +35,14 @@ require ("db.php");
 	$mail->Password = SMTPPASS;
 
 	//qui envoie, et qui reçoit
+<<<<<<< HEAD
 	$mail->setFrom('picocjo@gmail.com', 'jp_informatique');
 	
 	$mail->addAddress('jp_informatique@hotmail.fr', 'picocjo gmail');
+=======
+	$mail->setFrom('accounts@auth.com', 'Test');
+	$mail->addAddress('guillaumewf3@gmail.com', 'Guillaume Sylvestre');
+>>>>>>> origin/master
 
 	//mail au format HTML
 	$mail->isHTML(true); 
