@@ -8,4 +8,4 @@
 
 	//connexion au serveur smtp (envoi de mail)
 	//define("SMTPUSER", "");
-	//define("SMTPPASS", "");
+//define("SMTPPASS", "");

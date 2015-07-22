@@ -14,6 +14,8 @@
 		<input type="password" name="password" placeholder="Password" />
 		<input type="submit" value="OK" />
 	</form>
+
+	<a href="formforgotemail.php" id="#form1">email oublié?</a>
 	<?php 
 		//si on a stocké un message d'erreur (dans login_handler.php)
 		if(!empty($_SESSION['login_error'])){

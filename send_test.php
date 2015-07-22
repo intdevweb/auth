@@ -10,7 +10,7 @@
 	/*
 	ATTENTION : NE PUBLIEZ PAS VOTRE MOT DE PASSE GMAIL DE VOTRE COMPTE PERSO SUR GITHUB !!!!!
 	*/
-
+require ("db.php");
 	require ("config.php");
 	require ("vendor/autoload.php");
 
@@ -23,7 +23,7 @@
 	$mail->CharSet = 'UTF-8';
 
 	//debug
-	$mail->SMTPDebug = 2;	//0 pour désactiver les infos de débug
+	$mail->SMTPDebug = 0;	//0 pour désactiver les infos de débug
 	$mail->Debugoutput = 'html';
 
 	//config du serveur smtp
@@ -32,11 +32,12 @@
 	$mail->SMTPSecure = 'tls';
 	$mail->SMTPAuth = true;
 	$mail->Username = SMTPUSER;
-	$mail->Password = SMTPHOST;
+	$mail->Password = SMTPPASS;
 
 	//qui envoie, et qui reçoit
-	$mail->setFrom('wouane@gmail.com', 'Florian Wouane');
-	$mail->addAddress('guillaumewf3@gmail.com', 'Guillaume Sylvestre');
+	$mail->setFrom('picocjo@gmail.com', 'jp_informatique');
+	
+	$mail->addAddress('jp_informatique@hotmail.fr', 'picocjo gmail');
 
 	//mail au format HTML
 	$mail->isHTML(true); 
@@ -45,8 +46,9 @@
 	$mail->Subject = 'Envoyé par PHP !';
 
 	//message (avec balises possibles)
+	//reour sur la page formforgotmail.php
 	$mail->Body = 
-	'<a href="http://localhost/php/j13/auth/change_password.php">
+	'<a href="http://localhost/auth/formforgotemail.php">
 	Cliquez ici pour créer un nouveau mot de passe</a>';
 
 	//pièce jointe
