@@ -8,12 +8,17 @@
 	<title>Connexion !</title>
 </head>
 <body>
+
+	<h1>Connexion</h1>
 	
 	<form method="POST" action="login_handler.php">
-		<input type="text" name="email" placeholder="Email or username" />
-		<input type="password" name="password" placeholder="Password" />
+		<input type="text" name="email" placeholder="Email ou pseudo" />
+		<input type="password" name="password" placeholder="Mot de passe" />
 		<input type="submit" value="OK" />
 	</form>
+
+	<a href="forgot_password.php">Mot de passe oublié ?</a>
+
 	<?php 
 		//si on a stocké un message d'erreur (dans login_handler.php)
 		if(!empty($_SESSION['login_error'])){
