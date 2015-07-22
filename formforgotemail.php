@@ -24,6 +24,11 @@ if(!empty($_POST))
 		}
 		
 	}
+	//////////////////////ajouot de bibliotheque et de composer pour les telecharger
+	//////////////////////se connecter sous dos se mettre dans le repertoire voulu , ici auth et 
+	///////////////////// taper : composer install
+	///////////////////// puis installer la bibliotheque de messagerie maxwell irc
+	////////////////////// en saissisant toujours en dos : composer require phpmailer/phpmailer
 ?>
 <!DOCTYPE html>
 <html lang="en">
